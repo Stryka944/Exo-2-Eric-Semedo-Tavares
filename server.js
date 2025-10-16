@@ -2,24 +2,28 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import taskRoutes from "./routes/taskRoutes.js";
+import connectDB from "./src/config/db.js";
+import taskRoutes from "./src/routes/taskRoutes.js";
 
-// Chargement des variables d'environnement (.env)
+// Chargement des variables d'environnement
 dotenv.config();
 
+// Connexion à MongoDB
+connectDB();
+
 const app = express();
-const PORT = process.env.PORT || 3000; // Récupération du port depuis .env
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
 app.use(bodyParser.json());
 
-// Déclaration des routes principales
+// Routes principales
 app.use("/api/tasks", taskRoutes);
 
-// Route de test (racine)
+// Route de test
 app.get("/", (req, res) => {
-  res.send("Bienvenue sur l'API TodoList d'Eric (version dotenv) 🚀");
+  res.send("Bienvenue sur l'API TodoList");
 });
 
 // Lancement du serveur
