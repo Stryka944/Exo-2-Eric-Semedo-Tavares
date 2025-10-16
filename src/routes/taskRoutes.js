@@ -1,5 +1,5 @@
 import express from "express";
-import { getTasks, addTask, deleteTask } from "../controllers/taskController.js";
+import { getTasks, addTask, deleteTask, deleteAllTasks} from "../controllers/taskController.js";
 
 const router = express.Router();
 
@@ -11,5 +11,8 @@ router.post("/", addTask);
 
 // Route pour supprimer une tâche
 router.delete("/:id", deleteTask);
+
+// Route pour supprimer toutes les tâches
+router.delete("/", deleteAllTasks);
 
 export default router;

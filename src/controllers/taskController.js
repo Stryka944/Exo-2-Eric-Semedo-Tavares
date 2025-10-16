@@ -34,3 +34,13 @@ export const deleteTask = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la suppression de la tâche" });
   }
 };
+
+// Supprime toutes les tâches
+export const deleteAllTasks = async (req, res) => {
+  try {
+    await Task.deleteMany({});
+    res.json({ message: "Toutes les tâches ont été supprimées avec succès" });
+  } catch (error) {
+    res.status(500).json({ message: "Erreur lors de la suppression de toutes les tâches" });
+  }
+};
