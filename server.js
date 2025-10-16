@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Routes principales
 app.use("/api/tasks", taskRoutes);

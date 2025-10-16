@@ -4,8 +4,9 @@ import Task from "../models/taskModel.js";
 export const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find();
-    res.json(tasks);
-  } catch (error) {
+    res.setHeader("Content-Type", "application/json");
+    res.send(JSON.stringify(tasks, null, 2));
+      } catch (error) {
     res.status(500).json({ message: "Erreur lors de la récupération des tâches" });
   }
 };
